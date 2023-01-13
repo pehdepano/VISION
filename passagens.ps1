@@ -1,6 +1,6 @@
 ############################################################################
 #Project: Counting files per hour
-#Developer: Tiago Cerveira (pehdepano.com)
+#Developer: Tiago Cerveira (https://github.com/pehdepano/PRTG)
 #Tools : PowerShell 5.1.22621.963
 #E-Mail: tiago.cerveira@gmail.com
 ###########################################################################
@@ -30,7 +30,7 @@ Please inform a " -ForegroundColor Red -NoNewline; Write-Host "Path" -Foreground
 ##	(Get-ChildItem $Path -filter $Ext |
 ##	Where-Object { $_.LastWriteTime -gt ((Get-Date).Date).AddHours($Hour) -and $_.LastWriteTime -lt ((Get-Date).Date).AddHours($HourB) }).Count
 
-#Loop filtering only $Ext files in $Path in each hour of yesterday
+#Loop filtering only $Ext files in $Path in each hour of yesterday and output XML
 
 Write-Host ('<?xml version="1.0" encoding="UTF-8"?>
 <prtg>')
