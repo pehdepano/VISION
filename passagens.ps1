@@ -12,7 +12,7 @@ PS .\script.ps1 C:\Temp\ftp\"
 $Path = $args[0]
 $Ext = $args[1]
 $Date = ((Get-Date).Date).AddDays(-1) # Set date to yesterday
-$Day = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+$Day = 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
 
 if (!$args) {
 	Write-Host "
