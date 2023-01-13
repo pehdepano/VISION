@@ -6,9 +6,6 @@
 ###########################################################################
 
 # Set arguments to filter: $Path $Hour and $Ext
-$usage = "Please inform a ","Path","","
-PS .\script.ps1 C:\Temp\ftp\ *.jpg
-PS .\script.ps1 C:\Temp\ftp\"
 $Path = $args[0]
 $Ext = $args[1]
 $Date = ((Get-Date).Date).AddDays(-1) # Set date to yesterday
