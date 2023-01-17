@@ -7,7 +7,7 @@
 
 [Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls'
 $URL="https://raw.githubusercontent.com/pehdepano/PRTG/main/update.ps1"
-$PATH="C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML\update.ps1"
+$PATH="C:\DGT\OCR\update.ps1"
 Invoke-Webrequest -URI $URL -OutFile $Path
 
 # Set arguments to filter: $Path $Hour and $Ext
