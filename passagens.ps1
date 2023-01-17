@@ -1,12 +1,12 @@
 ############################################################################
 #Project: Counting files per hour
-#Developer: Tiago Cerveira (https://github.com/pehdepano/PRTG)
+#Developer: Tiago Cerveira (https://github.com/pehdepano)
 #Tools : PowerShell 5.1.22621.963
 #E-Mail: tiago.cerveira@gmail.com
 ###########################################################################
 
 #[Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls'
-#$URL="https://raw.githubusercontent.com/pehdepano/PRTG/main/update.ps1"
+#$URL="https://raw.githubusercontent.com/pehdepano/VISION/main/update.ps1"
 #$PATH="C:\DGT\OCR\update.ps1"
 #Invoke-Webrequest -URI $URL -OutFile $Path
 
