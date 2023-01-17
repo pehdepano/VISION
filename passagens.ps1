@@ -5,49 +5,43 @@
 #E-Mail: tiago.cerveira@gmail.com
 ###########################################################################
 
-[Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls'
-$URL="https://raw.githubusercontent.com/pehdepano/PRTG/main/update.ps1"
-$PATH="C:\DGT\OCR\update.ps1"
-Invoke-Webrequest -URI $URL -OutFile $Path
+#[Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls'
+#$URL="https://raw.githubusercontent.com/pehdepano/PRTG/main/update.ps1"
+#$PATH="C:\DGT\OCR\update.ps1"
+#Invoke-Webrequest -URI $URL -OutFile $Path
 
-# Set arguments to filter: $Path $Hour and $Ext
-$Path = $args[0]
+# Import csv file from de $arg[0]
+$csvFile = ".\config.csv"
+$csvData = Import-Csv -Path $csvFile #-Header "Nome_Ponto","Estrutura_Enviadas"
+
+$Client = $args[0]
 $Ext = $args[1]
-$Date = ((Get-Date).Date).AddDays(-1) # Set date to yesterday
-$Day = 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
+$Date = (Get-Date).Date
+$Hour = get-date -format dd/MM/yyyy" "HH:00:00
+$HourVal1 = (get-date -format HH) - 1
+$HourVal2 = get-date -format HH
 
-if (!$args) {
-	Write-Host "
-Without args
-	
-Please inform a " -ForegroundColor Red -NoNewline; Write-Host "Path" -ForegroundColor Blue -NoNewline; Write-Host " to search with or without file extension:" -ForegroundColor Red -NoNewline;
-	Write-Host "
-	
-	PS .\script.ps1 C:\Temp\ftp\ *.jpg
-	PS .\script.ps1 C:\Temp\ftp\" -ForegroundColor Blue;
-	exit }
+#Create csv file
+Write-Output ('"Hora",') -NoNewline | Out-File (".\{0}.csv" -f $Client) -Append -Encoding utf8
 
-#Filtering only $Ext files in $Path between $Hour and $HourB in actual day
-
-##	(Get-ChildItem $Path -filter $Ext |
-##	Where-Object { $_.LastWriteTime -gt ((Get-Date).Date).AddHours($Hour) -and $_.LastWriteTime -lt ((Get-Date).Date).AddHours($HourB) }).Count
-
-#Loop filtering only $Ext files in $Path in each hour of yesterday and output XML
-
-Write-Host ('<?xml version="1.0" encoding="UTF-8"?>
-<prtg>')
-
-For ($i=0; $i -le 23; $i++) {
-	$o=$i+1
-		$Day[$i]=(Get-ChildItem $Path -filter $Ext |
-		Where-Object { $_.LastWriteTime -gt ($Date).AddHours($i) -and $_.LastWriteTime -lt ($Date).AddHours($o) }).Count
-Write-Host ('	<result>
-		<Channel>{0}h - {1}h</Channel>
-		<Value>{2}</Value>
-		<Mode>Absolute</Mode>
-		<Unit>Custom</Unit>
-		<CustomUnit>Carros</CustomUnit>
-	</result>' -f $i,$o,$Day[$i])
+#fill header with names
+foreach ($line in $csvData) {
+	$Name = $line.Nome_Ponto
+	Write-Output ('"{0}",' -f $Name) -NoNewline | Out-File (".\{0}.csv" -f $Client) -Append -Encoding utf8
 }
-#$Day # Print results
-Write-Host '</prtg>'
+$DateF = Get-Date
+Write-Output ('"Time Stamp"' -f $DateF) | Out-File (".\{0}.csv" -f $Client) -Append -Encoding utf8
+
+#input time
+Write-Output ('"$Hour",') -NoNewline | Out-File (".\{0}.csv" -f $Client) -Append -Encoding utf8
+
+#fill data
+foreach ($line in $csvData) {
+	$Path = $line.Estrutura_Enviadas
+		$Counter = (Get-ChildItem $Path -filter $Ext |
+		Where-Object { $_.LastWriteTime -gt ($Date).AddHours($HourVal1) -and $_.LastWriteTime -lt ($Date).AddHours($HourVal2) }).Count
+		Write-Output ('"{0}",' -f $Counter) -NoNewline | Out-File (".\{0}.csv" -f $Client) -Append -Encoding utf8
+}
+#Timestamp in last col
+$DateF = Get-Date
+Write-Output ('"{0}",' -f $DateF) | Out-File (".\{0}.csv" -f $Client) -Append -Encoding utf8
