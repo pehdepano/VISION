@@ -1,8 +1,8 @@
 #############################################################################
-#	Project: Counting files per hour										#
-#	Developer: Tiago Cerveira (https://github.com/pehdepano)				#
-#	Tools : PowerShell 5.1.22621.963										#
-#	E-Mail: tiago.cerveira@gmail.com										#
+#       Project: Counting files per hour                                    #
+#       Developer: Tiago Cerveira (https://github.com/pehdepano)            #
+#       Tools : PowerShell 5.1.22621.963                                    #
+#       E-Mail: tiago.cerveira@gmail.com                                    #
 #############################################################################
 
 #[Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls'
