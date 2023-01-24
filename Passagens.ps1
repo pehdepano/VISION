@@ -1,5 +1,5 @@
 #################################################################################
-#	Project: Counting files per hour					#
+#	Project: Counting files per hour  v0.3					#
 #	Developer: Tiago Cerveira (https://github.com/pehdepano)		#
 #	Tools : PowerShell 5.1.22621.963					#
 #	E-Mail: tiago.cerveira@gmail.com					#
