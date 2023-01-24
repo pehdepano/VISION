@@ -1,8 +1,8 @@
 #################################################################################
-#	Project: Create config.novo.csv file v0.2									#
-#	Developer: Tiago Cerveira (https://github.com/pehdepano)					#
-#	Tools : PowerShell 5.1.22621.963											#
-#	E-Mail: tiago.cerveira@gmail.com											#
+#	Project: Create config.novo.csv file v0.2				#
+#	Developer: Tiago Cerveira (https://github.com/pehdepano)		#
+#	Tools : PowerShell 5.1.22621.963					#
+#	E-Mail: tiago.cerveira@gmail.com					#
 #################################################################################
 
 # Import csv file from de $arg[0]
