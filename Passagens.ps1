@@ -1,21 +1,22 @@
-#############################################################################
-#       Project: Counting files per hour                                    #
-#       Developer: Tiago Cerveira (https://github.com/pehdepano)            #
-#       Tools : PowerShell 5.1.22621.963                                    #
-#       E-Mail: tiago.cerveira@gmail.com                                    #
-#############################################################################
+#################################################################################
+#	Project: Counting files per hour					#
+#	Developer: Tiago Cerveira (https://github.com/pehdepano)		#
+#	Tools : PowerShell 5.1.22621.963					#
+#	E-Mail: tiago.cerveira@gmail.com					#
+#################################################################################
 
+#Update files --- needs atention
 #[Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls'
-#$URL="https://raw.githubusercontent.com/pehdepano/VISION/main/update.ps1"
-#$PATH="C:\DGT\OCR\update.ps1"
+#$URL="https://001.com.link/update.zip"
+#$PATH="C:\001\001\update.zip"
 #Invoke-Webrequest -URI $URL -OutFile $Path
 
-# Import csv file from de $arg[0] to $csvData.
-$csvFile = ".\config.csv"
-$csvData = Import-Csv -Path $csvFile
 # Assigns the arguments passed to the script to the variables $Client $Ext.
 $Client = $args[0]
 $Ext = $args[1]
+# Import csv file from $arg[0] to $csvData.
+$csvFile = (".\config.{0}.csv" -f $Client)
+$csvData = Import-Csv -Path $csvFile
 # Assigns date formats to filters and logs.
 $Date = (Get-Date).Date
 $DateT = get-date -format yyyy-MM-dd
@@ -31,7 +32,9 @@ $nomes = @()
 $carros = @()
 # Add the first data in arrays.
 $nomes += 'Hora'
+$nomes += "End_Time"
 $carros += ((Get-Date).Date).AddHours($HourVal1)
+$carros += (Get-Date).Date
 # Verify if exists a proper csv already.
 $csvExist = (Get-ChildItem .\ -filter (".\{0}.{1}.csv" -f $Client,$DateT)).Count
 # Create a csv and fill the first line with $nomes array, if $csvExist = 0.
@@ -39,7 +42,6 @@ if (!$csvExist) {
 	foreach ($line in $csvData) {
 		$nomes += $line.Nome_Ponto
 	}
-	$nomes += "Time_Stamp"
 	$nomesT = '"{0}"' -f ($nomes -join '","')
 	Write-Output $nomesT | Out-File (".\{0}.{1}.csv" -f $Client,$DateT) -Append -Encoding utf8
 }
@@ -49,10 +51,10 @@ foreach ($line in $csvData) {
 		$carros += (Get-ChildItem $Path -filter $Ext |
 		Where-Object { $_.LastWriteTime -gt ($Date).AddHours($HourVal2) -and $_.LastWriteTime -lt ($Date).AddHours($HourVal1) }).Count
 }
-$carros += (get-date -format dd/MM/yyyy" "HH:mm:ss)
+$carros[1] = (get-date -format dd/MM/yyyy" "HH:mm:ss)
 # Add '","' to each value
 $carrosT = '"{0}"' -f ($carros -join '","')
 # Append $carrosT array in the next line to csv file.
 Write-Output $carrosT | Out-File (".\{0}.{1}.csv" -f $Client,$DateT) -Append -Encoding utf8
-# Call db_ocr.exe
-.\db_ocr.exe
+# Call db_ocr.exe with id
+.\db_ocr.exe $Client
