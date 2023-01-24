@@ -1,3 +1,5 @@
 # VISION
 
-Repositório para os sensores customizados e scripts criados para otimizar e melhorar o monitoramento dos ativos, com saída para tratamento em dashboards.
+Script for counting vehicles that passed the cameras, saving the log file.
+Creation of binaries with PS2EXE:
+https://github.com/MScholtes/PS2EXE
