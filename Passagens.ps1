@@ -1,15 +1,9 @@
 #################################################################################
-#	Project: Counting files per hour  v0.3					#
+#	Project: Counting files per hour  v0.4					#
 #	Developer: Tiago Cerveira (https://github.com/pehdepano)		#
 #	Tools : PowerShell 5.1.22621.963					#
 #	E-Mail: tiago.cerveira@gmail.com					#
 #################################################################################
-
-#Update files --- needs atention
-#[Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls'
-#$URL="https://001.com.link/update.zip"
-#$PATH="C:\001\001\update.zip"
-#Invoke-Webrequest -URI $URL -OutFile $Path
 
 # Assigns the arguments passed to the script to the variables $Client $Ext.
 $Client = $args[0]
@@ -42,7 +36,7 @@ if (!$csvExist) {
 	foreach ($line in $csvData) {
 		$nomes += $line.Nome_Ponto
 	}
-	$nomesT = '"{0}"' -f ($nomes -join '","')
+	$nomesT = $nomes -join ','
 	Write-Output $nomesT | Out-File (".\{0}.{1}.csv" -f $Client,$DateT) -Append -Encoding utf8
 }
 # Fill $carros array with counter result.
@@ -53,7 +47,7 @@ foreach ($line in $csvData) {
 }
 $carros[1] = (get-date -format dd/MM/yyyy" "HH:mm:ss)
 # Add '","' to each value
-$carrosT = '"{0}"' -f ($carros -join '","')
+$carrosT = $carros -join ','
 # Append $carrosT array in the next line to csv file.
 Write-Output $carrosT | Out-File (".\{0}.{1}.csv" -f $Client,$DateT) -Append -Encoding utf8
 # Call db_ocr.exe with id
