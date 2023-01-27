@@ -1,0 +1,6 @@
+# ignore all logs, csv, ico and binaries (py include)
+*.log
+*.exe
+*.ico
+*.csv
+*.py
