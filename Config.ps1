@@ -1,5 +1,5 @@
 #################################################################################
-#	Project: Create config.novo.csv file v0.2				#
+#	Project: Create config.novo.csv file v0.4				#
 #	Developer: Tiago Cerveira (https://github.com/pehdepano)		#
 #	Tools : PowerShell 5.1.22621.963					#
 #	E-Mail: tiago.cerveira@gmail.com					#
@@ -32,11 +32,11 @@ foreach ($line in $csvData) {
 	$enviadas4 = $estEnviadas.replace('%1i',$line.IP_Camera_04)
 	
 #fill "config.novo.csv" with selected data
-	Write-Output ('"{0}.1","{1}"' -f $name2,$enviadas1) | Out-File (".\config.novo.csv") -Append -Encoding utf8
+	Write-Output ('"{0}_1","{1}"' -f $name2,$enviadas1) | Out-File (".\config.novo.csv") -Append -Encoding utf8
 	if ($IP2) {
-	Write-Output ('"{0}.2","{1}"' -f $name2,$enviadas2) | Out-File (".\config.novo.csv") -Append -Encoding utf8}
+	Write-Output ('"{0}_2","{1}"' -f $name2,$enviadas2) | Out-File (".\config.novo.csv") -Append -Encoding utf8}
 	if ($IP3) {
-	Write-Output ('"{0}.3","{1}"' -f $name2,$enviadas3) | Out-File (".\config.novo.csv") -Append -Encoding utf8}
+	Write-Output ('"{0}_3","{1}"' -f $name2,$enviadas3) | Out-File (".\config.novo.csv") -Append -Encoding utf8}
 	if ($IP4) {
-	Write-Output ('"{0}.4","{1}"' -f $name2,$enviadas4) | Out-File (".\config.novo.csv") -Append -Encoding utf8}
+	Write-Output ('"{0}_4","{1}"' -f $name2,$enviadas4) | Out-File (".\config.novo.csv") -Append -Encoding utf8}
 }
