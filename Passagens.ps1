@@ -1,9 +1,9 @@
-#################################################################################
-#	Project: Counting files per hour  v0.4					#
-#	Developer: Tiago Cerveira (https://github.com/pehdepano)		#
-#	Tools : PowerShell 5.1.22621.963					#
-#	E-Mail: tiago.cerveira@gmail.com					#
-#################################################################################
+##############################################################
+#	Project: Counting files per hour  v0.4
+#	Developer: Tiago Cerveira (https://github.com/pehdepano)
+#	Tools : PowerShell 5.1.22621.963
+#	E-Mail: tiago.cerveira@gmail.com
+##############################################################
 
 # Assigns the arguments passed to the script to the variables $Client $Ext.
 $Client = $args[0]
