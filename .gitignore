@@ -5,7 +5,7 @@
 *.csv
 *.py
 update.ps1
-.bin/
+bin/
 *.zip
-.csv/
+csv/
 xml/
