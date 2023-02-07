@@ -22,14 +22,10 @@ foreach ($line in $csvData) {
 	$IP3 = $line.IP_Camera_03.replace('.',$separador)
 	$IP4 = $line.IP_Camera_04.replace('.',$separador)
 	$estEnviadas = $line.Estrutura_Enviadas.replace('%l',$name)
-	$enviadas1 = $estEnviadas.replace('%i',$IP1)
-	$enviadas2 = $estEnviadas.replace('%i',$IP2)
-	$enviadas3 = $estEnviadas.replace('%i',$IP3)
-	$enviadas4 = $estEnviadas.replace('%i',$IP4)
-	$enviadas1 = $estEnviadas.replace('%1i',$line.IP_Camera_01)
-	$enviadas2 = $estEnviadas.replace('%1i',$line.IP_Camera_02)
-	$enviadas3 = $estEnviadas.replace('%1i',$line.IP_Camera_03)
-	$enviadas4 = $estEnviadas.replace('%1i',$line.IP_Camera_04)
+	$enviadas1 = ($estEnviadas.replace('%i',$IP1)).replace('%1i',$line.IP_Camera_01)
+	$enviadas2 = ($estEnviadas.replace('%i',$IP2)).replace('%1i',$line.IP_Camera_02)
+	$enviadas3 = ($estEnviadas.replace('%i',$IP3)).replace('%1i',$line.IP_Camera_03)
+	$enviadas4 = ($estEnviadas.replace('%i',$IP4)).replace('%1i',$line.IP_Camera_04)
 	
 #fill "config.novo.csv" with selected data
 	Write-Output ('"{0}_1","{1}"' -f $name2,$enviadas1) | Out-File (".\config.novo.csv") -Append -Encoding utf8
