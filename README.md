@@ -1,5 +1,5 @@
 # VISION
 
-Script for counting vehicles that passed the cameras, saving the log file.
-Creation of binaries with PS2EXE:
+Script para contar veículos que passam por câmeras OCR, salvando em um arquivo CSV.
+Releases criados com PS2EXE:
 https://github.com/MScholtes/PS2EXE
