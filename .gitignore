@@ -1,4 +1,5 @@
 # ignore all logs, csv, ico and binaries (py include)
+.gitignore
 *.log
 *.exe
 *.ico
